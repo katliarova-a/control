@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Контрольная работа: Pygame Platformer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Контрольная работа: Pygame Platformer</h1>
+    <div class="subtitle">Внимательно изучи код и найди ошибки</div>
+
+    <!-- Блок результата (появится сверху после проверки) -->
+    <div id="result-area">
+        <h2>Ваш результат:</h2>
+        <div class="score-big"><span id="score-val">0</span> / 18</div>
+        <p id="grade-text" style="font-size: 1.2em; margin-top: 10px;"></p>
+        <p style="font-size: 0.9em; color: #555;">Прокрутите вниз, чтобы увидеть разбор ошибок.</p>
+        <button onclick="requestRestart()" style="margin-top:15px; padding:10px 20px; cursor:pointer; background:var(--primary); color:white; border:none; border-radius:5px;">Пройти заново</button>
+    </div>
+
+    <form id="quiz-form">
+        
+        <!-- РАЗДЕЛ 1: ТЕСТЫ -->
+        <div class="section">
+            <div class="section-title">📝 Раздел 1: Теория (10 вопросов)</div>
+            
+            <!-- Q1 -->
+            <div class="question" id="q1">
+                <h3>1. Какая команда обязательна для запуска любого проекта на Pygame?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q1" value="A"> A) import game</label>
+                    <label><input type="radio" name="q1" value="B"> B) pygame.init()</label>
+                    <label><input type="radio" name="q1" value="C"> C) start.game()</label>
+                    <label><input type="radio" name="q1" value="D"> D) window.open()</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Q2 -->
+            <div class="question" id="q2">
+                <h3>2. Что возвращает функция pygame.event.get()?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q2" value="A"> A) Список всех нажатых клавиш прямо сейчас</label>
+                    <label><input type="radio" name="q2" value="B"> B) Координаты мыши</label>
+                    <label><input type="radio" name="q2" value="C"> C) Список событий с момента последнего вызова</label>
+                    <label><input type="radio" name="q2" value="D"> D) Текущий кадр анимации</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Q3 -->
+            <div class="question" id="q3">
+                <h3>3. В файле player.py гравитация применяется только если:</h3>
+                <div class="options">
+                    <label><input type="radio" name="q3" value="A"> A) Игрок нажал кнопку прыжка</label>
+                    <label><input type="radio" name="q3" value="B"> B) Игрок стоит на земле (is_on_ground == True)</label>
+                    <label><input type="radio" name="q3" value="C"> C) Игрок НЕ на земле (is_on_ground == False)</label>
+                    <label><input type="radio" name="q3" value="D"> D) Всегда, независимо от состояния</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Q4 -->
+            <div class="question" id="q4">
+                <h3>4. Метод для проверки столкновения двух прямоугольников?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q4" value="A"> A) rect1.hit(rect2)</label>
+                    <label><input type="radio" name="q4" value="B"> B) rect1.collide(rect2)</label>
+                    <label><input type="radio" name="q4" value="C"> C) rect1.colliderect(rect2)</label>
+                    <label><input type="radio" name="q4" value="D"> D) pygame.check_collision()</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Q5 -->
+            <div class="question" id="q5">
+                <h3>5. Зачем в классе Camera метод apply(x, y)?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q5" value="A"> A) Двигать игрока</label>
+                    <label><input type="radio" name="q5" value="B"> B) Преобразовать мировые координаты в экранные (сдвиг на камеру)</label>
+                    <label><input type="radio" name="q5" value="C"> C) Увеличить окно</label>
+                    <label><input type="radio" name="q5" value="D"> D) Загрузить карту</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Q6 -->
+            <div class="question" id="q6">
+                <h3>6. Что будет, если забыть pygame.display.flip()?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q6" value="A"> A) Игра будет без звука</label>
+                    <label><input type="radio" name="q6" value="B"> B) Окно закроется</label>
+                    <label><input type="radio" name="q6" value="C"> C) Экран не обновится (черный или старый кадр)</label>
+                    <label><input type="radio" name="q6" value="D"> D) Компьютер перезагрузится</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Q7 -->
+            <div class="question" id="q7">
+                <h3>7. Что делает continue в цикле отрисовки объектов (map_loader.py)?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q7" value="A"> A) Завершает программу</label>
+                    <label><input type="radio" name="q7" value="B"> B) Пропускает отрисовку текущего объекта (если он собран) и идет к следующему</label>
+                    <label><input type="radio" name="q7" value="C"> C) Удаляет объект из базы</label>
+                    <label><input type="radio" name="q7" value="D"> D) Возвращает ошибку</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Q8 -->
+            <div class="question" id="q8">
+                <h3>8. Как правильно создать красную поверхность 50x50?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q8" value="A"> A) pygame.Color(...)</label>
+                    <label><input type="radio" name="q8" value="B"> B) surf = pygame.Surface((50, 50)); surf.fill((255, 0, 0))</label>
+                    <label><input type="radio" name="q8" value="C"> C) pygame.draw.rect(...)</label>
+                    <label><input type="radio" name="q8" value="D"> D) pygame.Image(...)</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Q9 -->
+            <div class="question" id="q9">
+                <h3>9. В методе draw() класса Player зачем используется pygame.transform.flip()?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q9" value="A"> A) Чтобы изменить цвет персонажа на красный</label>
+                    <label><input type="radio" name="q9" value="B"> B) Чтобы отразить спрайт по горизонтали, когда игрок смотрит влево</label>
+                    <label><input type="radio" name="q9" value="C"> C) Чтобы увеличить размер персонажа в прыжке</label>
+                    <label><input type="radio" name="q9" value="D"> D) Чтобы ускорить анимацию</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- Q10 -->
+            <div class="question" id="q10">
+                <h3>10. Что такое dt (delta time), который передается в update?</h3>
+                <div class="options">
+                    <label><input type="radio" name="q10" value="A"> A) Количество собранных бочек</label>
+                    <label><input type="radio" name="q10" value="B"> B) Время, прошедшее с прошлого кадра (для плавной физики)</label>
+                    <label><input type="radio" name="q10" value="C"> C) Расстояние до ближайшей платформы</label>
+                    <label><input type="radio" name="q10" value="D"> D) Номер текущего уровня</label>
+                </div>
+                <div class="feedback"></div>
+            </div>
+        </div>
+
+        <!-- РАЗДЕЛ 2: ПОИСК ОШИБОК -->
+        <div class="section">
+            <div class="section-title">🐞 Раздел 2: Найди номер строки с ошибкой</div>
+            <p class="error-hint">В каждом фрагменте кода есть <b>одна</b> ошибка. Посчитай строки внутри черного окна (первая строка — это №1) и впиши номер строки, где допущена ошибка.</p>
+
+            <!-- E1 -->
+            <div class="question" id="e1">
+                <h3>Фрагмент кода №1 (Анимация)</h3>
+                <div class="code-block-container">
+                    <span class="code-line">def update(self, dt):</span>
+                    <span class="code-line">    if len(self.idle_frames) > 1:</span>
+                    <span class="code-line">        self.animation_timer += dt</span>
+                    <span class="code-line">        if self.animation_timer >= self.animation_duration:</span>
+                    <span class="code-line">            self.animation_timer = 0</span>
+                    <span class="code-line">            self.current_frame = (self.current_frame + 1) % len(self.idle_frames)</span>
+                    <span class="code-line">            self.image = self.idl_e_frames[self.current_frame]</span>
+                </div>
+                <div class="error-input-group">
+                    <label>Номер строки:</label>
+                    <input type="number" name="e1" min="1" max="10">
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- E2 -->
+            <div class="question" id="e2">
+                <h3>Фрагмент кода №2 (Управление)</h3>
+                <div class="code-block-container">
+                    <span class="code-line">if keys[pygame.K_LEFT] or keys[pygame.K_a]:</span>
+                    <span class="code-line">    self.velocity_x = -self.speed</span>
+                    <span class="code-line">    self.facing_right = False</span>
+                    <span class="code-line">    moving = True</span>
+                    <span class="code-line"> if keys[pygame.K_RIGHT] or keys[pygame.K_d]:</span>
+                    <span class="code-line">    self.velocity_x = self.speed</span>
+                    <span class="code-line">    self.facing_right = True</span>
+                </div>
+                <div class="error-input-group">
+                    <label>Номер строки:</label>
+                    <input type="number" name="e2" min="1" max="10">
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- E3 -->
+            <div class="question" id="e3">
+                <h3>Фрагмент кода №3 (Камера)</h3>
+                <div class="code-block-container">
+                    <span class="code-line">class Camera:</span>
+                    <span class="code-line">    def apply(self, x, y):</span>
+                    <span class="code-line">        return int(x + self.x), int(y + self.y)</span>
+                    <span class="code-line"></span>
+                    <span class="code-line">    def move(self, dx, dy, map_width, map_height):</span>
+                    <span class="code-line">        self.x += dx</span>
+                </div>
+                <div class="error-input-group">
+                    <label>Номер строки:</label>
+                    <input type="number" name="e3" min="1" max="10">
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- E4 -->
+            <div class="question" id="e4">
+                <h3>Фрагмент кода №4 (Физика)</h3>
+                <div class="code-block-container">
+                    <span class="code-line">for platform in platforms:</span>
+                    <span class="code-line">     if self.rect.colliderect(platform):</span>
+                    <span class="code-line">        if self.velocity_y > 0:</span>
+                    <span class="code-line">            self.rect.bottom = platform.top</span>
+                    <span class="code-line">            self.is_on_ground = True</span>
+                    <span class="code-line">            self.velocit_y = 0</span>
+                </div>
+                <div class="error-input-group">
+                    <label>Номер строки:</label>
+                    <input type="number" name="e4" min="1" max="10">
+                </div>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- E5 -->
+            <div class="question" id="e5">
+                <h3>Фрагмент кода №5 (Отрисовка карты)</h3>
+                <div class="code-block-container">
+                    <span class="code-line">for layer in self.data.layers:</span>
+                    <span class="code-line">    for y in range(start_y, end_y):</span>
+                    <span class="code-line">        for x in range(start_x, end_x):</span>
+                    <span class="code-line">            screen.blit(img, pos)</span>
+                    <span class="code-line">            for obj in self.data.objectgroups:</span>
+                    <span class="code-line">                screen.blit(obj_img, obj_pos)</span>
+                </div>
+                <div class="error-input-group">
+                    <label>Номер строки:</label>
+                    <input type="number" name="e5" min="1" max="10">
+                </div>
+                <div class="feedback"></div>
+            </div>
+        </div>
+
+        <!-- РАЗДЕЛ 3: ПРАКТИКА (КОД) -->
+        <div class="section">
+            <div class="section-title">💻 Раздел 3: Напиши код</div>
+            <p class="error-hint">Напишите код, используя <b>строго указанные имена переменных</b>.</p>
+
+            <!-- C1 -->
+            <div class="question" id="c1">
+                <h3>1. Движение врага</h3>
+                <p>Напиши метод <code>update</code> для класса <code>Enemy</code>. Враг должен двигаться влево на 3 пикселя.<br>
+                <b>Используй переменные:</b> <code>self.rect.x</code></p>
+                <textarea class="code-input" name="c1" placeholder="def update(self): ..."></textarea>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- C2 -->
+            <div class="question" id="c2">
+                <h3>2. Отрисовка счета</h3>
+                <p>Напиши строку, которая создает текст счета и сохраняет его в переменную <code>text</code>.<br>
+                Используй шрифт <code>font</code>, переменную счета <code>score</code> и белый цвет <code>(255, 255, 255)</code>.<br>
+                <b>Используй функцию:</b> <code>font.render</code></p>
+                <textarea class="code-input" name="c2" placeholder="text = ..."></textarea>
+                <div class="feedback"></div>
+            </div>
+
+            <!-- C3 -->
+            <div class="question" id="c3">
+                <h3>3. Сбор предмета</h3>
+                <p>Напиши условие: если прямоугольник игрока <code>player_rect</code> касается прямоугольника монетки <code>coin</code>, то:<br>
+                1. Удалить <code>coin</code> из списка <code>coins</code>.<br>
+                2. Увеличить переменную <code>score</code> на 1.<br>
+                <b>Используй методы:</b> <code>colliderect</code>, <code>remove</code></p>
+                <textarea class="code-input" name="c3" placeholder="if ..."></textarea>
+                <div class="feedback"></div>
+            </div>
+        </div>
+
+        <button type="button" class="submit-btn" id="submitBtn" onclick="checkAnswers()">Завершить тест и узнать результат</button>
+    </form>
+</div>
+
+<script src="script.js">
+    
+</script>
+
+</body>
+</html>
