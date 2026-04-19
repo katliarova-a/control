@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Проверка знаний по проекту</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 900px; margin: 20px auto; background-color: #f4f7f6; color: #333; }
+        .block { background: white; border-radius: 12px; padding: 25px; margin-bottom: 30px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        h2 { color: #2c3e50; border-bottom: 2px solid #3498db; padding-bottom: 10px; }
+        .question { margin-bottom: 20px; padding: 15px; border-left: 4px solid #3498db; background: #fafafa; }
+        .code-box { background: #282c34; color: #abb2bf; padding: 15px; border-radius: 5px; font-family: 'Courier New', monospace; margin: 10px 0; line-height: 1.5; }
+        .code-line { display: block; }
+        .line-num { color: #5c6370; margin-right: 10px; user-select: none; }
+        .hidden { display: none; }
+        .correct { color: #27ae60; }
+        .wrong { color: #e74c3c; }
+        input[type="text"], input[type="number"] { padding: 8px; border: 1px solid #ccc; border-radius: 4px; width: 100px; }
+        button { background: #3498db; color: white; border: none; padding: 12px 25px; border-radius: 5px; cursor: pointer; font-size: 16px; }
+        button:hover { background: #2980b9; }
+        .result-box { text-align: center; background: white; padding: 40px; border-radius: 12px; }
+    </style>
+</head>
+<body>
+
+<div id="quiz-container">
+    <h1>📝 Тестирование по проекту Python/FastAPI</h1>
+
+    <!-- БЛОК 1: ТЕСТЫ (+1 балл) -->
+    <div class="block">
+        <h2>Раздел 1: Теория и Базовый синтаксис</h2>
+        
+        <div class="question">
+            <p>1. Какой декоратор используется для удаления ученика из базы данных в вашем FastAPI коде?</p>
+            <input type="radio" name="q1" value="0"> @app.post("/students/{student_id}")<br>
+            <input type="radio" name="q1" value="0"> @app.get("/delete_student")<br>
+            <input type="radio" name="q1" value="1"> @app.delete("/students/{student_id}")<br>
+            <input type="radio" name="q1" value="0"> @app.put("/students/{student_id}")<br>
+        </div>
+
+        <div class="question">
+            <p>2. Что делает параметр <code>response_class=HTMLResponse</code> в FastAPI?</p>
+            <input type="radio" name="q2" value="0"> Отправляет данные в формате JSON<br>
+            <input type="radio" name="q2" value="0"> Создает новую таблицу в БД<br>
+            <input type="radio" name="q2" value="1"> Сообщает браузеру, что придет HTML-страница<br>
+            <input type="radio" name="q2" value="0"> Подключает Telegram бота<br>
+        </div>
+
+        <div class="question">
+            <p>3. Зачем в SQL-запросах использовать <code>?</code> (например, <code>WHERE id = ?</code>)?</p>
+            <input type="radio" name="q3" value="0"> Это просто украшение кода<br>
+            <input type="radio" name="q3" value="1"> Для защиты от SQL-инъекций<br>
+            <input type="radio" name="q3" value="0"> Чтобы код работал быстрее в 2 раза<br>
+            <input type="radio" name="q3" value="0"> Это обязательный символ синтаксиса Python<br>
+        </div>
+
+        <div class="question">
+            <p>4. Какая библиотека используется в проекте для работы с HTML-шаблонами (рендеринга страниц)?</p>
+            <input type="radio" name="q4" value="0"> fastapi<br>
+            <input type="radio" name="q4" value="0"> sqlite3<br>
+            <input type="radio" name="q4" value="0"> aiohttp<br>
+            <input type="radio" name="q4" value="1"> jinja2<br>
+        </div>
+
+        <div class="question">
+            <p>5. В функции <code>add_student_submit</code> используются аргументы типа <code>Form(...)</code>. Почему нельзя использовать просто <code>BaseModel</code>, как в эндпоинте <code>create_student</code>?</p>
+            <input type="radio" name="q5" value="0"> BaseModel работает только с базой данных SQLite напрямую<br>
+            <input type="radio" name="q5" value="1"> Обычные HTML-формы отправляют данные в формате Form Data, а не JSON<br>
+            <input type="radio" name="q5" value="0"> Использование Form(...) автоматически шифрует данные ученика<br>
+            <input type="radio" name="q5" value="0"> В FastAPI нельзя использовать BaseModel внутри асинхронных функций (async)</br>
+        </div>
+
+    </div>
+
+    <!-- БЛОК 2: НАЙДИ ОШИБКУ (+2 балла) -->
+    <div class="block">
+        <h2>Раздел 2: Укажите номер строки с ошибкой</h2>
+        
+        <div class="question">
+            <p>1. Найдите ошибку</p>
+            <div class="code-box">
+                <span class="code-line"><span class="line-num">1</span>cursor = conn.cursor()</span>
+                <span class="code-line"><span class="line-num">2</span>cursor.execute("""CREATE TABLE students (</span>
+                <span class="code-line"><span class="line-num">3</span>    id INTEGER PRIMARY KEY,</span>
+                <span class="code-line"><span class="line-num">4</span>    name TEXT NOT NULL</span>
+                <span class="code-line"><span class="line-num">5</span>)""</span>
+            </div>
+            Введите номер строки: <input type="number" id="err1" data-ans="5">
+        </div>
+
+        <div class="question">
+            <p>2. Найдите ошибку</p>
+            <div class="code-box">
+                <span class="code-line"><span class="line-num">1</span>@app.get("/items")</span>
+                <span class="code-line"><span class="line-num">2</span>def read_items():</span>
+                <span class="code-line"><span class="line-num">3</span>    return {"status"-"ok"}</span>
+                <span class="code-line"><span class="line-num">4</span>@app.post("/items")</span>
+            </div>
+            Введите номер строки: <input type="number" id="err2" data-ans="3">
+        </div>
+
+        <div class="question">
+            <p>3. Найдите ошибку</p>
+            <div class="code-box">
+                <span class="code-line"><span class="line-num">1</span>student_id = 10</span>
+                <span class="code-line"><span class="line-num">2</span>conn = get_connection()</span>
+                <span class="code-line"><span class="line-num">3</span>cursor = conn.cursor()</span>
+                <span class="code-line"><span class="line-num">4</span>cursor.execute("SELECT * FROM students WHERE id = ?", (student_id))</span>
+                <span class="code-line"><span class="line-num">5</span>row = cursor.fetchone()</span>
+            </div>
+            Введите номер строки: <input type="number" id="err3" data-ans="4"> 
+        </div>
+
+        <div class="question">
+            <p>4. Найдите ошибку</p>
+            <div class="code-box">
+                <span class="code-line"><span class="line-num">1</span>@dp.message(Command("start"))</span>
+                <span class="code-line"><span class="line-num">2</span>async def cmd_start(message: types.Message):</span>
+                <span class="code-line"><span class="line-num">3</span>    text = "Привет!"</span>
+                <span class="code-line"><span class="line-num">4</span>    message.answer(text)</span>
+            </div>
+            Введите номер строки: <input type="number" id="err4" data-ans="4">
+        </div>
+
+        <div class="question">
+            <p>5. Найдите ошибку </p>
+            <div class="code-box">
+                <span class="code-line"><span class="line-num">1</span>conn = get_connection()</span>
+                <span class="code-line"><span class="line-num">2</span>cursor = conn.cursor()</span>
+                <span class="code-line"><span class="line-num">3</span>conn.close()</span>
+                <span class="code-line"><span class="line-num">4</span>cursor.execute("SELECT * FROM students")</span>
+                <span class="code-line"><span class="line-num">5</span>rows = cursor.fetchall()</span>
+            </div>
+            Введите номер строки: <input type="number" id="err5" data-ans="3"> 
+        </div>
+
+    </div>
+
+    <!-- БЛОК 3: НАПИШИ КОД (+3 балла) -->
+    <div class="block">
+        <h2>Раздел 3: Напиши строку кода</h2>
+        <div class="question">
+            <p>1. Напишите команду для создания главного объекта приложения FastAPI:<br> 
+            <code>app = ________()</code></p>
+            <input type="text" id="code1" data-ans="FastAPI">
+        </div>
+        <div class="question">
+            <p>2. Метод сохранения изменений в sqlite3:<br> <code>conn.________()</code></p>
+            <input type="text" id="code2" data-ans="commit">
+        </div>
+        <div class="question">
+            <p>3. Метод удаления данных в SQL:<br> <code>________ FROM students WHERE id = ?</code></p>
+            <input type="text" id="code3" data-ans="DELETE">
+        </div>
+        <div class="question">
+            <p>4. Как в URL-адресе эндпоинта указать переменную student_id?<br> 
+            <code>@app.get("/students/________")</code></p>
+            <input type="text" id="code4" data-ans="{student_id}">
+        </div>
+        <div class="question">
+            <p>5. Напишите метод, который извлекает только одну (первую) строку из результатов SQL-запроса:<br> 
+            <code>row = cursor.________()</code></p>
+            <input type="text" id="code5" data-ans="fetchone">
+        </div>
+
+    </div>
+
+    <button onclick="checkQuiz()">Завершить тест</button>
+</div>
+
+<div id="result-screen" class="hidden result-box">
+    <h2 id="status-text"></h2>
+    <p id="score-text" style="font-size: 1.5em;"></p>
+    <p id="advice-text"></p>
+    <br>
+    <button onclick="resetQuiz()" style="background: #7f8c8d;">Перезапустить тест (Пароль)</button>
+</div>
+
+<script>
+    const MAX_POINTS = 30;
+    const PASS_RATE = 0.75;
+    const ADMIN_PASS = "test123";
+
+    // Если тест уже пройден, сразу показываем результаты (но без возможности менять)
+    if (localStorage.getItem('quiz_done')) {
+        setTimeout(() => { // Ждем загрузки DOM
+            checkQuiz(false); 
+        }, 100);
+    }
+
+    function checkQuiz(save = true) {
+        let score = 0;
+
+        // --- ПРОВЕРКА БЛОКА 1 (Радио) ---
+        for (let i = 1; i <= 5; i++) {
+            const options = document.getElementsByName('q' + i);
+            let selected = null;
+            let correctEl = null;
+
+            options.forEach(opt => {
+                if (opt.value === "1") correctEl = opt.parentElement;
+                if (opt.checked) selected = opt;
+            });
+
+            if (selected) {
+                if (selected.value === "1") {
+                    score += 1;
+                    selected.parentElement.classList.add('correct');
+                } else {
+                    selected.parentElement.classList.add('wrong');
+                    if (correctEl) correctEl.innerHTML += " <b class='correct'>(Правильный ответ)</b>";
+                }
+            } else {
+                if (correctEl) correctEl.innerHTML += " <b class='wrong'>(Вы не ответили. Правильно: см. здесь)</b>";
+            }
+        }
+
+        // --- ПРОВЕРКА БЛОКА 2 (Ошибки) ---
+        // --- ПРОВЕРКА БЛОКА 2 (Ошибки) ---
+for (let i = 1; i <= 5; i++) {
+    const input = document.getElementById('err' + i);
+    if (!input) continue;
+
+    const userAns = input.value.trim();
+    const correctAns = input.dataset.ans;
+
+    // Удаляем старые подсказки, если они есть (чтобы не дублировались)
+    const oldHint = input.parentNode.querySelector('.feedback-hint');
+    if (oldHint) oldHint.remove();
+
+    if (userAns === correctAns) {
+        score += 2;
+        input.style.border = "2px solid #27ae60";
+        input.style.backgroundColor = "#d4edda";
+    } else {
+        input.style.border = "2px solid #e74c3c";
+        input.style.backgroundColor = "#f8d7da";
+        // Добавляем подсказку с уникальным классом
+        input.insertAdjacentHTML('afterend', `<span class="wrong feedback-hint"> (Верно: строка ${correctAns})</span>`);
+    }
+    input.disabled = true;
+}
+
+
+        // --- ПРОВЕРКА БЛОКА 3 (Код) ---
+        for (let i = 1; i <= 5; i++) {
+            const input = document.getElementById('code' + i);
+            const ans = input.dataset.ans.toLowerCase();
+            if (input.value.trim().toLowerCase() === ans) {
+                score += 3;
+                input.style.backgroundColor = "#d4edda";
+            } else {
+                input.style.backgroundColor = "#f8d7da";
+                input.insertAdjacentHTML('afterend', `<span class="wrong"> (Верно: ${input.dataset.ans})</span>`);
+            }
+            input.disabled = true;
+        }
+
+        if (save) {
+            localStorage.setItem('quiz_score', score);
+            localStorage.setItem('quiz_done', 'true');
+        }
+        
+        showResults(score);
+    }
+
+    function showResults(currentScore) {
+        const score = currentScore !== undefined ? currentScore : localStorage.getItem('quiz_score');
+        const percent = score / MAX_POINTS;
+        
+        document.getElementById('result-screen').classList.remove('hidden');
+        document.querySelector('button[onclick="checkQuiz()"]').classList.add('hidden');
+
+        const scoreText = document.getElementById('score-text');
+        const statusText = document.getElementById('status-text');
+
+        scoreText.innerText = `Баллы: ${score} из ${MAX_POINTS} (${Math.round(percent*100)}%)`;
+
+        if (percent >= PASS_RATE) {
+            statusText.innerText = "🎉 ПОЗДРАВЛЯЕМ! ТЕСТ ПРОЙДЕН";
+            statusText.className = "correct";
+        } else {
+            statusText.innerText = "❌ ТЕСТ НЕ СДАН";
+            statusText.className = "wrong";
+        }
+        
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+    function resetQuiz() {
+        const p = prompt("Введите пароль учителя для сброса всех попыток:");
+        if (p === ADMIN_PASS) {
+            localStorage.clear();
+            location.reload();
+        } else {
+            alert("Неверный пароль!");
+        }
+    }
+</script>
+
+
+</body>
+</html>
